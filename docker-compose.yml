@@ -1,0 +1,26 @@
+services:
+  laravel-app:
+    build: .
+    container_name: laravel-ecs-web
+    ports:
+      - "8000:80"
+    environment:
+      - DB_HOST=laravel-db
+      - DB_DATABASE=laravel_db
+      - DB_USERNAME=laravel_user
+      - DB_PASSWORD=secret_password
+    depends_on:
+      - laravel-db
+
+  laravel-db:
+    image: mysql:8.0
+    container_name: laravel-ecs-db
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: laravel_db
+      MYSQL_USER: laravel_user
+      MYSQL_PASSWORD: secret_password
+    volumes:
+      - mysql-data:/var/lib/mysql
+volumes:
+  mysql-data:
