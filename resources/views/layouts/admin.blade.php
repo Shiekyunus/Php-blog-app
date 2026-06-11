@@ -53,7 +53,7 @@
                             role="button">&#128276;
                             @if ($unreadNotifications > 0)
                                 <span class="badge badge-danger navbar-badge">
-                                    {{ $unreadNotifications }}
+                                    {{ $unreadNotifications ?? 0 }}
                                 </span>
                             @endif
                         </a>
