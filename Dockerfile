@@ -1,5 +1,5 @@
 # Stage 1: Build & Compose Dependencies (Use latest stable Composer image)
-FROM composer:latest as builder
+FROM public.ecr.aws/docker/library/composer:latest as builder
 WORKDIR /app
 COPY . .
 
@@ -7,7 +7,7 @@ COPY . .
 RUN composer install --no-dev --optimize-autoloader --no-interaction --ignore-platform-req=php
 
 # Stage 2: Production Execution Environment (Upgrade to PHP 8.4)
-FROM php:8.4-fpm-alpine
+FROM public.ecr.aws/docker/library/php:8.4-fpm-alpine
 
 RUN apk add --no-cache \
     nginx \
