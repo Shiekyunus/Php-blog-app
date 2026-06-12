@@ -34,7 +34,6 @@
                 </div>
             </form>
             <ul class="navbar-nav ml-auto">
-
                 @guest
                     @if (Route::has('login'))
                         <li class="nav-item">
@@ -51,7 +50,7 @@
                     <li class="nav-item dropdown me-3">
                         <a class="nav-link dropdown-toggle position-relative" href="{{ route('notifications.index') }}"
                             role="button">&#128276;
-                            @if ($unreadNotifications > 0)
+                            @if (($unreadNotifications ?? 0) > 0)
                                 <span class="badge badge-danger navbar-badge">
                                     {{ $unreadNotifications ?? 0 }}
                                 </span>
@@ -151,9 +150,9 @@
                                     <a href="{{ route('comments.pending') }}" class="nav-link">
                                         <i class="navv-icon fas fa-newspaper"></i>
                                         <p>Moderate Comments
-                                            @if ($pendingComments > 0)
+                                            @if (($pendingComments ?? 0) > 0)
                                                 <span class="badge badge-warning">
-                                                    {{ $pendingComments }}
+                                                    {{ $pendingComments ?? 0 }}
                                                 </span>
                                             @endif
                                         </p>
