@@ -16,3 +16,7 @@ phases:
       - echo Build completed on `date`
       - echo Pushing the Docker image to Amazon ECR...
       - docker push 947792709243.dkr.ecr.us-east-1.amazonaws.com/shiek-manual-php-app:latest
+
+artifacts:
+  files:
+    - imagedefinitions.json
