@@ -15,7 +15,8 @@ phases:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker image to Amazon ECR...
-      - docker push 947792709243.dkr.ecr.us-east-1.amazonaws.com/shiek-manual-php-app:latest
+      - docker push 947792709243.dkr.ecr.us-east-1.amazonaws.com/shiek-manual-php-app:latest 
+      - printf '[{"name":"shiek-manual-laravel-php-container","imageUri":"947792709243.dkr.ecr.us-east-1.amazonaws.com/shiek-manual-php-app:latest"}]' > imagedefinitions.json
 
 artifacts:
   files:
