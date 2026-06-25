@@ -29,6 +29,10 @@ WORKDIR /var/www/html
 
 # Copy application source and vendors from builder stage
 COPY --from=builder /app /var/www/html
+RUN mkdir -p /var/www/html/database \
+    && touch /var/www/html/database/database.sqlite \
+    && mkdir -p /var/www/html/storage/logs \
+    && touch /var/www/html/storage/logs/laravel.log
 
 # Set appropriate ownership and permissions for Laravel backend
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache \
@@ -41,4 +45,4 @@ EXPOSE 80
 COPY docker/entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
-CMD ["sh", "-c", "php-fpm -D && nginx -g 'daemon off;'"]
+CMD ["sh", "-c", "php-fpm && nginx -g 'daemon off;'"]
